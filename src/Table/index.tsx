@@ -1,0 +1,44 @@
+import React, { FC } from 'react';
+import styles from './styles.module.css';
+
+export type TableData<TRow = any> = TRow[];
+
+export interface TableProps<TRow = any>
+{
+    title?: string;
+    columns: string[];
+    data: TableData<TRow>;
+    rowConverter?: (row: TRow) => React.ReactNode[];
+}
+
+export const Table: FC<TableProps> = ({ title, columns, data, rowConverter }) =>
+{
+    const rows = data.map(x => rowConverter ? rowConverter(x) : x);
+
+    return (
+        <div>
+            {title && <div className={styles.title} >{title}</div>}
+            <table className={styles.table}>
+                <thead>
+                    <tr>
+                        {columns.map((x, index) => 
+                            <th key={index}>
+                                {x}
+                            </th>
+                        )}
+                    </tr>
+                </thead>
+                {rows.map((row, index) => (
+                    <tr key={index}>
+                        {row.map((cell: any, index2: number) => (
+                            <td key={index2}>
+                                {cell}
+                            </td>
+                        ))}
+                    </tr>
+                ))}
+            </table>
+        </div>
+    );
+    
+} 

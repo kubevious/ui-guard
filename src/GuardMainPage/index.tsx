@@ -1,41 +1,46 @@
 import _ from 'the-lodash';
-import React from 'react';
-import { InnerPage, PageHeader } from '@kubevious/ui-components';
+import React, { useState } from 'react';
+import { InnerPage, PageHeader, PageLink } from '@kubevious/ui-components';
+import { ChangePackageListItem, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
+import { useService } from '@kubevious/ui-framework/dist';
+import { ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
 
-// import { useService } from '@kubevious/ui-framework';
-// import { VALIDATORS_METADATA,
-//          ValidatorID,
-//          ValidatorSetting,
-//          ValidationConfig } from '@kubevious/entity-meta'
 
-// import { IValidatorConfigService } from '@kubevious/ui-middleware';
-
-// import { ValidatorCategoryControl } from '../components/ValidatorCategoryControl'
-
-// import styles from './styles.module.css';
-
+import { Table } from '../Table';
 
 export const GuardMainPage = () => {
-    // const [validationConfig, setValidationConfig] = useState<ValidationConfig | null>(null);
+    const [items, setItems] = useState<ChangePackageListItem[]>([]);
+    // const [nextItemId, setNextItemId] = useState<string | null>(null);
 
-    // const service = useService<IValidatorConfigService>({ kind: 'validator' }, 
-    //     (svc) => {
+    const service = useService<IGuardService>({ kind: 'guard' }, 
+        (svc) => {
 
-    //         svc.getValidators()
-    //             .then(result => {
-    //                 setValidationConfig(result);
-    //             });
+            svc.getItems()
+                .then(result => {
+                    // setNextItemId(result.nextId ?? null);
+                    setItems(result.items);
+                });
 
-    //     });
+        });
 
-    // const handleValidatorChange = (validator: ValidatorID, setting: ValidatorSetting)=> {
-    //     service!.updateValidator({
-    //         validator: validator,
-    //         setting: setting,
-    //     });
-    //     validationConfig![validator] = setting;
-    //     setValidationConfig(validationConfig);
-    // };
+    const renderState = (item: ChangePackageListItem) => {
+        if (item.state === ValidationState.completed) {
+            return <>
+                {(item.success) && 'passed'}
+                {(!item.success) && 'failed'}
+            </>
+        }
+
+        if (item.state === ValidationState.failed) {
+            <>
+                error processing
+            </>
+        }
+
+        return <>
+            {item.state}
+        </>;
+    }
 
     return (
         <InnerPage
@@ -45,26 +50,23 @@ export const GuardMainPage = () => {
                 </PageHeader>
             }
         >
-{/* 
-            {validationConfig && <div className={styles.validators}>
-            
-                {VALIDATORS_METADATA.categories.map((categoryMeta, index) => {
 
-                    return <Fragment key={index}>
-                        {(categoryMeta.validators.length > 0) &&
-                            <ValidatorCategoryControl 
-                                    key={index}
-                                    categoryMeta={categoryMeta}
-                                    validationConfig={validationConfig} 
-                                    onSelectionChange={(validator, setting) => {
-                                        handleValidatorChange(validator, setting);
-                                    }}
-                                    />
-                        }
-                    </Fragment>; 
-                })}
-                
-            </div>} */}
+            <Table columns={['Date', 'Status']}
+                   data={items.map(x => {
+
+                        return [
+                            "aaa",
+                            /* <PageLink name={item.date}
+                                      path="/guard/change"
+                                      searchParams={{ id: item.change_id }} >
+                            </PageLink> */
+                            renderState(x)
+                        ];
+
+                   })}
+            >
+            </Table>
+
 
         </InnerPage>
     );
