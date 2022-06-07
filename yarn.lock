@@ -1625,10 +1625,10 @@
     "@kubevious/http-client" "^1.0.19"
     the-promise "^2.0.13"
 
-"@kubevious/ui-middleware@^1.0.68":
-  version "1.0.68"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-middleware/-/ui-middleware-1.0.68.tgz#cd09682f55e244a9cd6fef081113ba4539a0d673"
-  integrity sha512-Ve8JUk314rn2Ytc4xNX/zO37HagxcYl+cmTxZLJ0uoIyhfuk0jYmEmP3ktL0mQmZt2zfBkKPpDG4Z1UXivMKWA==
+"@kubevious/ui-middleware@^1.0.71":
+  version "1.0.71"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-middleware/-/ui-middleware-1.0.71.tgz#b068dac0b2482da3beb053dc9462dbbb211f6f81"
+  integrity sha512-jV32VFhsU82JMDp6SGHTVdoQVJkle8RPE5A3/BbgVYAbr0IbEIN5lmvrXrMAMv4qzjHdfOigdazKE4X6e+NGlg==
   dependencies:
     "@kubevious/entity-meta" "^1.0.69"
     "@kubevious/http-client" "^1.0.19"

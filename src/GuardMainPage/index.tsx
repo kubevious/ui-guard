@@ -42,6 +42,22 @@ export const GuardMainPage = () => {
         </>;
     }
 
+    const renderChanges = (item: ChangePackageListItem) => {
+        const parts : string[] = [];
+        if (item.changeSummary) {
+            if (item.changeSummary.createdCount) {
+                parts.push(`${item.changeSummary.createdCount} changes`);
+            }
+            if (item.changeSummary.deletedCount) {
+                parts.push(`${item.changeSummary.deletedCount} deletions`);
+            }
+        }
+        if (parts.length == 0) {
+            parts.push('no changes');
+        }
+        return parts.join(', ');
+    }
+
     return (
         <InnerPage
             midNarrow
@@ -51,7 +67,7 @@ export const GuardMainPage = () => {
             }
         >
 
-            <Table columns={['Date', 'Status']}
+            <Table columns={['Date', 'Status', 'Changes']}
                    data={items.map(x => {
 
                         return [
@@ -60,7 +76,8 @@ export const GuardMainPage = () => {
                                       path="/guard/change"
                                       searchParams={{ id: item.change_id }} >
                             </PageLink> */
-                            renderState(x)
+                            renderState(x),
+                            renderChanges(x)
                         ];
 
                    })}

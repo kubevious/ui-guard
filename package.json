@@ -25,7 +25,7 @@
     "@kubevious/entity-meta": "^1.0.69",
     "@kubevious/ui-components": "^1.0.239",
     "@kubevious/ui-framework": "^1.0.59",
-    "@kubevious/ui-middleware": "^1.0.68",
+    "@kubevious/ui-middleware": "^1.0.71",
     "bootstrap": "^5.0.0",
     "classnames": "^2.2.6",
     "postcss": "^8.4.14",
