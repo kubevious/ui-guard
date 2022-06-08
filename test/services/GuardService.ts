@@ -9,9 +9,14 @@ import {
 } from '@kubevious/ui-middleware/dist/services/guard';
 import { ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
 
-import { ITEMS, MOCK_CHANGES_DATA } from './mock-items';
+import { ITEMS, MOCK_CHANGES_DATA, MOCK_NEW_ISSUES_DATA, MOCK_CLEARED_ISSUES_DATA } from './mock-items';
 
 export class GuardService implements IGuardService {
+
+    constructor()
+    {
+      console.log("[GuardService] constructor");
+    }
 
     getItems(lastId?: string): Promise<ChangePackageListResult>
     {
@@ -30,7 +35,7 @@ export class GuardService implements IGuardService {
 
         const listItem = makeListItem(x);
 
-        return Promise.resolve({
+        const details : ChangePackageItemDetails = {
           change_id: listItem.change_id,
           date: listItem.date,
           state: listItem.state,
@@ -41,8 +46,11 @@ export class GuardService implements IGuardService {
           charts: [],
           changes: MOCK_CHANGES_DATA,
           deletions: [],
+          newIssues: MOCK_NEW_ISSUES_DATA,
+          clearedIssues: MOCK_CLEARED_ISSUES_DATA
+        }
 
-        });
+        return Promise.resolve(details);
     }
 
     close()

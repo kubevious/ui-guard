@@ -6,4 +6,6 @@ REPO_DEPENDENCIES=(
     "@kubevious/ui-middleware"
     "@kubevious/ui-components"
     "@kubevious/entity-meta"
+    "@kubevious/ui-alerts"
+    "@kubevious/ui-properties"
 )

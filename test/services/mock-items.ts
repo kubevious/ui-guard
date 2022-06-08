@@ -1,4 +1,6 @@
-import { ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
+import { KubernetesObject } from '@kubevious/ui-middleware/dist';
+import { AlertSourceKind } from '@kubevious/ui-middleware/dist/entities/alert';
+import { ValidationIssues, ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
 
 export const ITEMS: any[] = [
     {
@@ -56,7 +58,239 @@ export const MOCK_CHARTS_DATA = [
 
 ];
 
-export const MOCK_CHANGES_DATA = [
+export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[ServiceAccount]/resource-[my-prometheus-kube-prometh-alertmanager]",
+		"alerts": [
+			{
+				"id": "validator-UNUSED_SERVICE_ACCOUNT",
+				"msg": "ServiceAccount not used.",
+				"source": {
+					"id": "UNUSED_SERVICE_ACCOUNT",
+					"kind": "validator"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[ServiceAccount]/resource-[my-prometheus-kube-prometh-prometheus]",
+		"alerts": [
+			{
+				"id": "validator-UNUSED_SERVICE_ACCOUNT",
+				"msg": "ServiceAccount not used.",
+				"source": {
+					"id": "UNUSED_SERVICE_ACCOUNT",
+					"kind": "validator"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[Secret]/resource-[alertmanager-my-prometheus-kube-prometh-alertmanager]",
+		"alerts": [
+			{
+				"id": "validator-UNUSED_SECRET",
+				"msg": "Secret not used.",
+				"source": {
+					"id": "UNUSED_SECRET",
+					"kind": "validator"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[Service]/resource-[my-prometheus-kube-prometh-alertmanager]",
+		"alerts": [
+			{
+				"id": "validator-MISSING_SERVICE_APP",
+				"msg": "Could not find apps matching selector.",
+				"source": {
+					"id": "MISSING_SERVICE_APP",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[kube-system]/version-[v1]/kind-[Service]/resource-[my-prometheus-kube-prometh-coredns]",
+		"alerts": [
+			{
+				"id": "validator-SERVICE_MISSING_PORT",
+				"msg": "Missing port 9153 definition.",
+				"source": {
+					"id": "SERVICE_MISSING_PORT",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[kube-system]/version-[v1]/kind-[Service]/resource-[my-prometheus-kube-prometh-kube-controller-manager]",
+		"alerts": [
+			{
+				"id": "validator-MISSING_SERVICE_APP",
+				"msg": "Could not find apps matching selector.",
+				"source": {
+					"id": "MISSING_SERVICE_APP",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[kube-system]/version-[v1]/kind-[Service]/resource-[my-prometheus-kube-prometh-kube-proxy]",
+		"alerts": [
+			{
+				"id": "validator-MISSING_SERVICE_APP",
+				"msg": "Could not find apps matching selector.",
+				"source": {
+					"id": "MISSING_SERVICE_APP",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[kube-system]/version-[v1]/kind-[Service]/resource-[my-prometheus-kube-prometh-kube-scheduler]",
+		"alerts": [
+			{
+				"id": "validator-MISSING_SERVICE_APP",
+				"msg": "Could not find apps matching selector.",
+				"source": {
+					"id": "MISSING_SERVICE_APP",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[Service]/resource-[my-prometheus-kube-prometh-prometheus]",
+		"alerts": [
+			{
+				"id": "validator-MISSING_SERVICE_APP",
+				"msg": "Could not find apps matching selector.",
+				"source": {
+					"id": "MISSING_SERVICE_APP",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/logic/ns-[default]/app-[my-prometheus-node-exporter]/cont-[node-exporter]",
+		"alerts": [
+			{
+				"id": "rule-container-memory-usage",
+				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
+				"source": {
+					"id": "container-memory-usage",
+					"kind": "rule"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/logic/ns-[default]/app-[my-prometheus-kube-state-metrics]/cont-[kube-state-metrics]",
+		"alerts": [
+			{
+				"id": "rule-container-memory-usage",
+				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
+				"source": {
+					"id": "container-memory-usage",
+					"kind": "rule"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/logic/ns-[default]/app-[my-prometheus-kube-prometh-blackbox-exporter]/cont-[blackbox-exporter]",
+		"alerts": [
+			{
+				"id": "rule-container-memory-usage",
+				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
+				"source": {
+					"id": "container-memory-usage",
+					"kind": "rule"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/logic/ns-[default]/app-[my-prometheus-kube-prometh-operator]/cont-[prometheus-operator]",
+		"alerts": [
+			{
+				"id": "rule-container-memory-usage",
+				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
+				"source": {
+					"id": "container-memory-usage",
+					"kind": "rule"
+				},
+				"severity": "warn"
+			}
+		]
+	},
+	{
+		"dn": "root/logic/ns-[kube-system]/app-[kube-dns]/service-[my-prometheus-kube-prometh-coredns]",
+		"alerts": [
+			{
+				"id": "validator-SERVICE_MISSING_PORT",
+				"msg": "Missing port 9153 definition.",
+				"source": {
+					"id": "SERVICE_MISSING_PORT",
+					"kind": "validator"
+				},
+				"severity": "error"
+			}
+		]
+	}
+];
+
+
+export const MOCK_CLEARED_ISSUES_DATA : ValidationIssues = [
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[ServiceAccount]/resource-[my-prometheus-kube-prometh-alertmanager]",
+		"alerts": [
+			{
+				"id": "validator-UNUSED_SERVICE_ACCOUNT",
+				"msg": "ServiceAccount not used.",
+				"source": {
+					"id": "UNUSED_SERVICE_ACCOUNT",
+					"kind": AlertSourceKind.validator
+				},
+				"severity": "error"
+			}
+		]
+	},
+	{
+		"dn": "root/k8s/ns-[default]/version-[v1]/kind-[ServiceAccount]/resource-[my-prometheus-kube-prometh-prometheus]",
+		"alerts": [
+			{
+				"id": "validator-UNUSED_SERVICE_ACCOUNT",
+				"msg": "ServiceAccount not used.",
+				"source": {
+					"id": "UNUSED_SERVICE_ACCOUNT",
+					"kind": AlertSourceKind.validator
+				},
+				"severity": "warn"
+			}
+		]
+	}
+];
+
+
+export const MOCK_CHANGES_DATA : KubernetesObject[] = [
     {
         kind: 'PodSecurityPolicy',
         spec: {
@@ -230,7 +464,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
         automountServiceAccountToken: true,
@@ -247,7 +481,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
         automountServiceAccountToken: true,
@@ -264,7 +498,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
         automountServiceAccountToken: true,
@@ -281,7 +515,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
         automountServiceAccountToken: true,
@@ -298,7 +532,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
         automountServiceAccountToken: true,
@@ -788,7 +1022,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
     },
@@ -835,7 +1069,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
     },
@@ -862,7 +1096,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
     },
@@ -972,7 +1206,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
     },
@@ -994,7 +1228,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'v1',
     },
@@ -1201,7 +1435,7 @@ export const MOCK_CHANGES_DATA = [
                         'app.kubernetes.io/instance': 'my-prometheus',
                         'app.kubernetes.io/managed-by': 'Helm',
                     },
-                    annotations: null,
+                    
                 },
             },
             minReadySeconds: 0,
@@ -1729,7 +1963,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1757,7 +1991,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1781,7 +2015,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1814,7 +2048,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1838,7 +2072,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1862,7 +2096,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1886,7 +2120,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1932,7 +2166,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },
@@ -1959,7 +2193,7 @@ export const MOCK_CHANGES_DATA = [
                 'app.kubernetes.io/managed-by': 'Helm',
             },
             namespace: 'default',
-            annotations: null,
+            
         },
         apiVersion: 'monitoring.coreos.com/v1',
     },

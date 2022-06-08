@@ -9,9 +9,10 @@ export interface TableProps<TRow = any>
     columns: string[];
     data: TableData<TRow>;
     rowConverter?: (row: TRow) => React.ReactNode[];
+    skipHeader?: boolean;
 }
 
-export const Table: FC<TableProps> = ({ title, columns, data, rowConverter }) =>
+export const Table: FC<TableProps> = ({ title, columns, data, rowConverter, skipHeader }) =>
 {
     const rows = data.map(x => rowConverter ? rowConverter(x) : x);
 
@@ -19,6 +20,7 @@ export const Table: FC<TableProps> = ({ title, columns, data, rowConverter }) =>
         <div>
             {title && <div className={styles.title} >{title}</div>}
             <table className={styles.table}>
+                {!skipHeader && 
                 <thead>
                     <tr>
                         {columns.map((x, index) => 
@@ -28,6 +30,7 @@ export const Table: FC<TableProps> = ({ title, columns, data, rowConverter }) =>
                         )}
                     </tr>
                 </thead>
+                }
                 {rows.map((row, index) => (
                     <tr key={index}>
                         {row.map((cell: any, index2: number) => (

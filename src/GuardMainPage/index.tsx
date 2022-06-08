@@ -1,10 +1,10 @@
 import _ from 'the-lodash';
 import React, { useState } from 'react';
-import { InnerPage, PageHeader, PageLink } from '@kubevious/ui-components';
+import { InnerPage, PageHeader } from '@kubevious/ui-components';
+// import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageListItem, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
 import { useService } from '@kubevious/ui-framework/dist';
-import { ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
-
+import { getChangesInfo, getChangeStateInfo } from '../components/stringifier';
 
 import { Table } from '../Table';
 
@@ -22,41 +22,6 @@ export const GuardMainPage = () => {
                 });
 
         });
-
-    const renderState = (item: ChangePackageListItem) => {
-        if (item.state === ValidationState.completed) {
-            return <>
-                {(item.success) && 'passed'}
-                {(!item.success) && 'failed'}
-            </>
-        }
-
-        if (item.state === ValidationState.failed) {
-            <>
-                error processing
-            </>
-        }
-
-        return <>
-            {item.state}
-        </>;
-    }
-
-    const renderChanges = (item: ChangePackageListItem) => {
-        const parts : string[] = [];
-        if (item.changeSummary) {
-            if (item.changeSummary.createdCount) {
-                parts.push(`${item.changeSummary.createdCount} changes`);
-            }
-            if (item.changeSummary.deletedCount) {
-                parts.push(`${item.changeSummary.deletedCount} deletions`);
-            }
-        }
-        if (parts.length == 0) {
-            parts.push('no changes');
-        }
-        return parts.join(', ');
-    }
 
     return (
         <InnerPage
@@ -76,8 +41,8 @@ export const GuardMainPage = () => {
                                       path="/guard/change"
                                       searchParams={{ id: item.change_id }} >
                             </PageLink> */
-                            renderState(x),
-                            renderChanges(x)
+                            getChangeStateInfo(x),
+                            getChangesInfo(x)
                         ];
 
                    })}
