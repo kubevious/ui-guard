@@ -27,7 +27,7 @@
     "@kubevious/ui-components": "^1.0.239",
     "@kubevious/ui-framework": "^1.0.59",
     "@kubevious/ui-middleware": "^1.0.72",
-    "@kubevious/ui-properties": "^1.0.71",
+    "@kubevious/ui-properties": "^1.0.72",
     "bootstrap": "^5.0.0",
     "classnames": "^2.2.6",
     "postcss": "^8.4.14",

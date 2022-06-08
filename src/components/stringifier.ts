@@ -1,3 +1,4 @@
+import { KubernetesObject } from "@kubevious/ui-middleware";
 import { ValidationState } from "@kubevious/ui-middleware/dist/entities/guard"
 import { ChangePackageListItem } from "@kubevious/ui-middleware/dist/services/guard"
 
@@ -32,4 +33,18 @@ export function getChangesInfo(item: ChangePackageListItem)
         parts.push('no changes');
     }
     return parts.join(', ');
+}
+
+
+export function getK8sConfigTitle(config: KubernetesObject)
+{
+    const parts : (string | undefined)[] = [];
+
+    parts.push(config.apiVersion);
+    parts.push(config.kind);
+    parts.push(config.metadata?.namespace);
+    parts.push(config.metadata?.name);
+
+    const title = parts.filter(x => x).join(" :: ");
+    return title;
 }

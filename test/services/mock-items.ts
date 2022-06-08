@@ -1,6 +1,6 @@
 import { KubernetesObject } from '@kubevious/ui-middleware/dist';
 import { AlertSourceKind } from '@kubevious/ui-middleware/dist/entities/alert';
-import { ValidationIssues, ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
+import { ChangePackageDeletion, ValidationIssues, ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
 
 export const ITEMS: any[] = [
     {
@@ -289,6 +289,19 @@ export const MOCK_CLEARED_ISSUES_DATA : ValidationIssues = [
 	}
 ];
 
+export const MOCK_DELETIONS_DATA : ChangePackageDeletion[] = [
+    {
+        apiVersion: 'policy/v1beta1',
+        kind: 'PodSecurityPolicy',
+        namespace: 'default',
+        name: 'my-prometheus-kube-prometh-alertmanager',
+    },
+    {
+        apiVersion: 'rbac.authorization.k8s.io/v1',
+        kind: 'ClusterRoleBinding',
+        name: 'my-prometheus-kube-prometh-operator-psp',
+    },
+]
 
 export const MOCK_CHANGES_DATA : KubernetesObject[] = [
     {

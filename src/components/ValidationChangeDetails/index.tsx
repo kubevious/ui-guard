@@ -1,13 +1,15 @@
 import _ from 'the-lodash';
 import React, { FC, useState } from 'react';
-import { InnerPage, Label, PageHeader } from '@kubevious/ui-components';
+import { InnerPage, PageHeader } from '@kubevious/ui-components';
 // import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageItemDetails, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
-import { useService } from '@kubevious/ui-framework/dist';
+import { useService } from '@kubevious/ui-framework';
 
 import { Summary } from '../Summary';
 import { NewIssues } from '../NewIssues';
 import { ResolvedIssues } from '../ResolvedIssues';
+import { Changes } from '../Changes';
+import { DeletedChanges } from '../DeletedChanges';
 
 import styles from './styles.module.css';
 
@@ -18,7 +20,7 @@ export interface ValidationChangeDetailsProps {
 export const ValidationChangeDetails : FC<ValidationChangeDetailsProps> = ({ changeId }) => {
     const [changeDetails, setChangeDetails] = useState<ChangePackageItemDetails | null>(null);
 
-    const service = useService<IGuardService>({ kind: 'guard' }, 
+    useService<IGuardService>({ kind: 'guard' }, 
         (svc) => {
 
             svc.getDetails(changeId)
@@ -45,13 +47,10 @@ export const ValidationChangeDetails : FC<ValidationChangeDetailsProps> = ({ cha
 
                 <ResolvedIssues details={changeDetails} />
 
-                <Label size="xlarge" color="faded">Changes</Label>
+                <Changes details={changeDetails} />
 
-
-                <pre>
-                {JSON.stringify(changeDetails, null, 4)}
-                </pre>
-
+                <DeletedChanges details={changeDetails} />
+                
             </>
             }
 

@@ -1,0 +1,9 @@
+.scrollContainer {
+    height: 600px; 
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

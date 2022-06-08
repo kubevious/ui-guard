@@ -7,21 +7,34 @@ import { useService } from '@kubevious/ui-framework/dist';
 import { getChangesInfo, getChangeStateInfo } from '../components/stringifier';
 
 import { Table } from '../Table';
+import { Button } from '@kubevious/ui-components/dist';
 
 export const GuardMainPage = () => {
     const [items, setItems] = useState<ChangePackageListItem[]>([]);
-    // const [nextItemId, setNextItemId] = useState<string | null>(null);
+    const [nextItemId, setNextItemId] = useState<string | null>(null);
 
     const service = useService<IGuardService>({ kind: 'guard' }, 
         (svc) => {
 
             svc.getItems()
                 .then(result => {
-                    // setNextItemId(result.nextId ?? null);
+                    setNextItemId(result.nextId ?? null);
                     setItems(result.items);
                 });
 
         });
+
+    const loadMore = () => {
+        if (!nextItemId) {
+            return;
+        }
+
+        service!.getItems(nextItemId)
+            .then(result => {
+                setNextItemId(result.nextId ?? null);
+                setItems(_.concat(items, result.items));
+            });
+    }
 
     return (
         <InnerPage
@@ -49,6 +62,9 @@ export const GuardMainPage = () => {
             >
             </Table>
 
+            {nextItemId && 
+                <Button type='dark' onClick={loadMore}></Button>
+                }
 
         </InnerPage>
     );

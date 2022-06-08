@@ -9,7 +9,7 @@ import {
 } from '@kubevious/ui-middleware/dist/services/guard';
 import { ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
 
-import { ITEMS, MOCK_CHANGES_DATA, MOCK_NEW_ISSUES_DATA, MOCK_CLEARED_ISSUES_DATA } from './mock-items';
+import { ITEMS, MOCK_CHANGES_DATA, MOCK_DELETIONS_DATA, MOCK_NEW_ISSUES_DATA, MOCK_CLEARED_ISSUES_DATA } from './mock-items';
 
 export class GuardService implements IGuardService {
 
@@ -45,7 +45,7 @@ export class GuardService implements IGuardService {
 
           charts: [],
           changes: MOCK_CHANGES_DATA,
-          deletions: [],
+          deletions: MOCK_DELETIONS_DATA,
           newIssues: MOCK_NEW_ISSUES_DATA,
           clearedIssues: MOCK_CLEARED_ISSUES_DATA
         }
