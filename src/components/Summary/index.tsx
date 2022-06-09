@@ -1,9 +1,9 @@
 import _ from 'the-lodash';
 import React, { FC } from 'react';
 import { ChangePackageItemDetails } from '@kubevious/ui-middleware/dist/services/guard';
-import { Table } from '../../Table';
-import { Block } from '../Block';
 import { ValidationStateAlerts } from '@kubevious/ui-middleware/dist/entities/guard';
+import { Table } from '@kubevious/ui-components';
+import { Block } from '../Block';
 import { getChangesInfo } from '../stringifier';
 import { Status } from '../Status';
 

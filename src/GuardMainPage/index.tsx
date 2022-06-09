@@ -7,8 +7,7 @@ import { useService } from '@kubevious/ui-framework/dist';
 import { getChangesInfo } from '../components/stringifier';
 import { Status } from '../components/Status';
 
-import { Table } from '../Table';
-import { Button } from '@kubevious/ui-components';
+import { Button, Table } from '@kubevious/ui-components';
 
 import { GUARD_CHANGE_DETAILS_PAGE } from '../metadata/page';
 
