@@ -56,7 +56,7 @@ export const GuardMainPage = () => {
                         return [
                             <PageLink name={x.date}
                                     path={GUARD_CHANGE_DETAILS_PAGE}
-                                    searchParams={{ id: x.change_id }} >
+                                    searchParams={{ changeid: x.change_id }} >
                             </PageLink>,
                             <Status item={x} />,
                             getChangesInfo(x)

@@ -5,7 +5,7 @@ import { ValidationChangeDetails } from '../components/ValidationChangeDetails';
 
 export const ValidationChangeDetailsPage = () => {
 
-    const changeId = useSearchQuery('change');
+    const changeId = useSearchQuery('changeid');
 
     return (
         <ValidationChangeDetails 

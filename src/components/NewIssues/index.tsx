@@ -10,14 +10,15 @@ export interface NewIssuesProps {
 
 export const NewIssues : FC<NewIssuesProps> = ({ details }) => {
 
-    if (!details.newIssues) {
+    const issues = details?.newIssues ?? [];
+    if (issues.length === 0) {
         return <>
         </>;
     }
 
     return <Block title="Raised Issues">
 
-        <IssuesList issues={details.newIssues} />
+        <IssuesList issues={issues} />
                
     </Block>;
 };
