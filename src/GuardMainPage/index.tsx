@@ -1,13 +1,17 @@
 import _ from 'the-lodash';
 import React, { useState } from 'react';
 import { InnerPage, PageHeader } from '@kubevious/ui-components';
-// import { PageLink } from '@kubevious/ui-components';
+import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageListItem, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
 import { useService } from '@kubevious/ui-framework/dist';
-import { getChangesInfo, getChangeStateInfo } from '../components/stringifier';
+import { getChangesInfo } from '../components/stringifier';
+import { Status } from '../components/Status';
 
 import { Table } from '../Table';
-import { Button } from '@kubevious/ui-components/dist';
+import { Button } from '@kubevious/ui-components';
+
+import { GUARD_CHANGE_DETAILS_PAGE } from '../metadata/page';
+
 
 export const GuardMainPage = () => {
     const [items, setItems] = useState<ChangePackageListItem[]>([]);
@@ -31,6 +35,7 @@ export const GuardMainPage = () => {
 
         service!.getItems(nextItemId)
             .then(result => {
+
                 setNextItemId(result.nextId ?? null);
                 setItems(_.concat(items, result.items));
             });
@@ -46,19 +51,18 @@ export const GuardMainPage = () => {
         >
 
             <Table columns={['Date', 'Status', 'Changes']}
-                   data={items.map(x => {
+                data={items.map(x => {
 
                         return [
-                            "aaa",
-                            /* <PageLink name={item.date}
-                                      path="/guard/change"
-                                      searchParams={{ id: item.change_id }} >
-                            </PageLink> */
-                            getChangeStateInfo(x),
+                            <PageLink name={x.date}
+                                    path={GUARD_CHANGE_DETAILS_PAGE}
+                                    searchParams={{ id: x.change_id }} >
+                            </PageLink>,
+                            <Status item={x} />,
                             getChangesInfo(x)
                         ];
 
-                   })}
+                })}
             >
             </Table>
 

@@ -31,6 +31,7 @@ export const Table: FC<TableProps> = ({ title, columns, data, rowConverter, skip
                     </tr>
                 </thead>
                 }
+                <tbody>
                 {rows.map((row, index) => (
                     <tr key={index}>
                         {row.map((cell: any, index2: number) => (
@@ -40,6 +41,7 @@ export const Table: FC<TableProps> = ({ title, columns, data, rowConverter, skip
                         ))}
                     </tr>
                 ))}
+                </tbody>
             </table>
         </div>
     );

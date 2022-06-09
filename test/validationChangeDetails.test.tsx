@@ -3,10 +3,10 @@ import 'jest';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { GuardMainPage } from '../src';
 import { app } from '@kubevious/ui-framework';
 import { GuardService } from './services/GuardService';
 import { MemoryRouter } from "react-router";
+import { ValidationChangeDetails } from '../src/components/ValidationChangeDetails';
 
 document.createRange = () => {
     const range = new Range();
@@ -22,16 +22,18 @@ document.createRange = () => {
     return range;
 };
 
-const renderComponent = () => render(<MemoryRouter initialEntries={['/']}><GuardMainPage /></MemoryRouter>);
+const renderComponent = () => render(<MemoryRouter initialEntries={['/']}>
+    <ValidationChangeDetails changeId="k8s-default-change-d19d1cbd-8288-4fe2-bde5-f4820a42b93f" />
+</MemoryRouter>);
 
-describe('GuardMainPage', () => {
+describe('ValidationChangeDetails', () => {
     beforeAll(() => {
         app.registerService({ kind: 'guard' }, () => {
             return new GuardService();
         });
     });
 
-    test('Guard Main page', async () => {
+    test('ValidationChangeDetails page', async () => {
         const { findByTestId } = renderComponent();
 
         const page = await findByTestId('inner-page');

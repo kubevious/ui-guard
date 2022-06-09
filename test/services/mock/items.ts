@@ -67,7 +67,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "ServiceAccount not used.",
 				"source": {
 					"id": "UNUSED_SERVICE_ACCOUNT",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "warn"
 			}
@@ -81,7 +81,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "ServiceAccount not used.",
 				"source": {
 					"id": "UNUSED_SERVICE_ACCOUNT",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "warn"
 			}
@@ -95,7 +95,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Secret not used.",
 				"source": {
 					"id": "UNUSED_SECRET",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "warn"
 			}
@@ -109,7 +109,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Could not find apps matching selector.",
 				"source": {
 					"id": "MISSING_SERVICE_APP",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}
@@ -123,7 +123,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Missing port 9153 definition.",
 				"source": {
 					"id": "SERVICE_MISSING_PORT",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}
@@ -137,7 +137,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Could not find apps matching selector.",
 				"source": {
 					"id": "MISSING_SERVICE_APP",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}
@@ -151,7 +151,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Could not find apps matching selector.",
 				"source": {
 					"id": "MISSING_SERVICE_APP",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}
@@ -165,7 +165,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Could not find apps matching selector.",
 				"source": {
 					"id": "MISSING_SERVICE_APP",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}
@@ -179,7 +179,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Could not find apps matching selector.",
 				"source": {
 					"id": "MISSING_SERVICE_APP",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}
@@ -193,7 +193,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
 				"source": {
 					"id": "container-memory-usage",
-					"kind": "rule"
+					"kind": AlertSourceKind.rule
 				},
 				"severity": "warn"
 			}
@@ -207,7 +207,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
 				"source": {
 					"id": "container-memory-usage",
-					"kind": "rule"
+					"kind": AlertSourceKind.rule
 				},
 				"severity": "warn"
 			}
@@ -221,7 +221,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
 				"source": {
 					"id": "container-memory-usage",
-					"kind": "rule"
+					"kind": AlertSourceKind.rule
 				},
 				"severity": "warn"
 			}
@@ -235,7 +235,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Rule container-memory-usage failed. Memory request is not set. This is not a good practice. Please correct ASAP.",
 				"source": {
 					"id": "container-memory-usage",
-					"kind": "rule"
+					"kind": AlertSourceKind.rule
 				},
 				"severity": "warn"
 			}
@@ -249,7 +249,7 @@ export const MOCK_NEW_ISSUES_DATA : ValidationIssues = [
 				"msg": "Missing port 9153 definition.",
 				"source": {
 					"id": "SERVICE_MISSING_PORT",
-					"kind": "validator"
+					"kind": AlertSourceKind.validator
 				},
 				"severity": "error"
 			}

@@ -1,21 +1,13 @@
+import React from 'react';
 import { app } from '@kubevious/ui-framework';
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { GuardService } from '../../test/services/GuardService';
 
 import { GuardMainPage } from './';
 
 export default {
     title: 'GuardMainPage',
-    component: GuardMainPage,
-    decorators: [
-        (Story) => (
-          <MemoryRouter>
-            <Story />
-          </MemoryRouter>
-        )
-      ],
+    component: GuardMainPage
 } as Meta;
 
 export const Default: Story = () => {

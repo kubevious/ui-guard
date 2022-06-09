@@ -4,7 +4,8 @@ import { ChangePackageItemDetails } from '@kubevious/ui-middleware/dist/services
 import { Table } from '../../Table';
 import { Block } from '../Block';
 import { ValidationStateAlerts } from '@kubevious/ui-middleware/dist/entities/guard';
-import { getChangesInfo, getChangeStateInfo } from '../stringifier';
+import { getChangesInfo } from '../stringifier';
+import { Status } from '../Status';
 
 export interface SummaryProps {
     details: ChangePackageItemDetails;
@@ -15,7 +16,7 @@ export const Summary : FC<SummaryProps> = ({ details }) => {
     const rows : any[][] = [
         ['Change Id', details.change_id],
         ['Date', details.date],
-        ['State', getChangeStateInfo(details)],
+        ['State', <Status item={details} />],
     ];
 
     if (details.validationSummary) {

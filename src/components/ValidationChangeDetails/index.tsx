@@ -12,6 +12,7 @@ import { Changes } from '../Changes';
 import { DeletedChanges } from '../DeletedChanges';
 
 import styles from './styles.module.css';
+// import { GUARD_MAIN_PAGE } from '../..';
 
 export interface ValidationChangeDetailsProps {
     changeId: string;
@@ -39,6 +40,10 @@ export const ValidationChangeDetails : FC<ValidationChangeDetailsProps> = ({ cha
         >
             <div className={styles.container}>
 
+                {/* <PageLink name="Back"
+                          path={GUARD_MAIN_PAGE} >
+                </PageLink>
+                 */}
             {changeDetails && <>
 
                 <Summary details={changeDetails} />

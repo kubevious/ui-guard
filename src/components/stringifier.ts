@@ -1,22 +1,6 @@
 import { KubernetesObject } from "@kubevious/ui-middleware";
-import { ValidationState } from "@kubevious/ui-middleware/dist/entities/guard"
 import { ChangePackageListItem } from "@kubevious/ui-middleware/dist/services/guard"
 
-export function getChangeStateInfo(item: ChangePackageListItem) 
-{
-    if (item.state === ValidationState.completed) {
-        if (item.success) {
-            return 'passed';
-        }
-        return 'failed';
-    }
-
-    if (item.state === ValidationState.failed) {
-        return 'error processing';
-    }
-
-    return item.state;
-}
 
 export function getChangesInfo(item: ChangePackageListItem)
 {

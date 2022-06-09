@@ -9,7 +9,7 @@ import {
 } from '@kubevious/ui-middleware/dist/services/guard';
 import { ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
 
-import { ITEMS, MOCK_CHANGES_DATA, MOCK_DELETIONS_DATA, MOCK_NEW_ISSUES_DATA, MOCK_CLEARED_ISSUES_DATA } from './mock-items';
+import { ITEMS, MOCK_CHANGES_DATA, MOCK_DELETIONS_DATA, MOCK_NEW_ISSUES_DATA, MOCK_CLEARED_ISSUES_DATA } from './mock/items';
 
 export class GuardService implements IGuardService {
 
@@ -20,10 +20,11 @@ export class GuardService implements IGuardService {
 
     getItems(lastId?: string): Promise<ChangePackageListResult>
     {
-        return Promise.resolve({
-          "totalCount": ITEMS.length,
-          "items": ITEMS.map(x => makeListItem(x))
-        });
+      console.log("[LastId] ", lastId);
+      return Promise.resolve({
+        "totalCount": ITEMS.length,
+        "items": ITEMS.map(x => makeListItem(x))
+      });
     }
 
     getDetails(id: string): Promise<ChangePackageItemDetails | null>
