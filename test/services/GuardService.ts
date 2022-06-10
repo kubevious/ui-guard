@@ -13,23 +13,46 @@ import { ITEMS, MOCK_CHANGES_DATA, MOCK_DELETIONS_DATA, MOCK_NEW_ISSUES_DATA, MO
 
 export class GuardService implements IGuardService {
 
-    constructor()
+    private _itemData : any[] = [];
+    private _resultCount : number;
+
+    constructor(isEmpty: boolean, resultCount: number)
     {
       console.log("[GuardService] constructor");
+      this._resultCount = resultCount;
+      if (!isEmpty) {
+        this._itemData = ITEMS;
+      }
     }
 
     getItems(lastId?: string): Promise<ChangePackageListResult>
     {
       console.log("[LastId] ", lastId);
+      let matchingItems : any[] = this._itemData;
+      if (lastId) {
+        const index = _.findIndex(matchingItems, x => x.change_id === lastId);
+        if (index !== -1) {
+          matchingItems = _.drop(matchingItems, index + 1);
+        }
+      }
+
+      const selectedItems = _.take(matchingItems, this._resultCount);
+
+      let nextId : string | undefined;
+      if (selectedItems.length < matchingItems.length) {
+        nextId = _.last(selectedItems).change_id;
+      }
+
       return Promise.resolve({
-        "totalCount": ITEMS.length,
-        "items": ITEMS.map(x => makeListItem(x))
+        totalCount: this._itemData.length,
+        nextId: nextId,
+        items: selectedItems.map(x => makeListItem(x))
       });
     }
 
     getDetails(id: string): Promise<ChangePackageItemDetails | null>
     {
-        const x = _.find(ITEMS, x => x.change_id === id);
+        const x = _.find(this._itemData, x => x.change_id === id);
         if (!x) {
           return Promise.resolve(null);
         }

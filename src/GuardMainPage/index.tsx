@@ -1,6 +1,6 @@
 import _ from 'the-lodash';
 import React, { useState } from 'react';
-import { InnerPage, PageHeader } from '@kubevious/ui-components';
+import { InnerPage, Label, PageHeader } from '@kubevious/ui-components';
 import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageListItem, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
 import { useService } from '@kubevious/ui-framework/dist';
@@ -11,9 +11,12 @@ import { Button, Table } from '@kubevious/ui-components';
 
 import { GUARD_CHANGE_DETAILS_PAGE } from '../metadata/page';
 
+import styles from './styles.module.css';
+
 
 export const GuardMainPage = () => {
-    const [items, setItems] = useState<ChangePackageListItem[]>([]);
+    const [items, setItems] = useState<ChangePackageListItem[] | null>(null);
+    const [totalCount, setTotalCount] = useState<number>(0);
     const [nextItemId, setNextItemId] = useState<string | null>(null);
 
     const service = useService<IGuardService>({ kind: 'guard' }, 
@@ -21,6 +24,7 @@ export const GuardMainPage = () => {
 
             svc.getItems()
                 .then(result => {
+                    setTotalCount(result.totalCount ?? 0);
                     setNextItemId(result.nextId ?? null);
                     setItems(result.items);
                 });
@@ -34,9 +38,9 @@ export const GuardMainPage = () => {
 
         service!.getItems(nextItemId)
             .then(result => {
-
+                setTotalCount(result.totalCount ?? 0);
                 setNextItemId(result.nextId ?? null);
-                setItems(_.concat(items, result.items));
+                setItems(_.concat(items ?? [], result.items));
             });
     }
 
@@ -48,9 +52,10 @@ export const GuardMainPage = () => {
                 </PageHeader>
             }
         >
+            <div className={styles.contents}>
 
             <Table columns={['Date', 'Status', 'Changes']}
-                data={items.map(x => {
+                data={(items ?? []).map(x => {
 
                         return [
                             <PageLink name={x.date}
@@ -65,10 +70,23 @@ export const GuardMainPage = () => {
             >
             </Table>
 
+            {items && <>
+                {(items.length === 0) && 
+                <>
+                    <Label color="faded">You have no validation runs.</Label>
+                </>}
+
+                {(items.length > 0) && 
+                <>
+                    <Label color="faded">Total changes: {totalCount}.</Label>
+                </>}
+            </>}
+
             {nextItemId && 
-                <Button type='dark' onClick={loadMore}></Button>
+                <Button type='ghost' onClick={loadMore}>Load More</Button>
                 }
 
+            </div>
         </InnerPage>
     );
 };

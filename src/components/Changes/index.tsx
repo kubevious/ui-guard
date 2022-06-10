@@ -42,24 +42,11 @@ export const Changes : FC<ChangesProps> = ({ details }) => {
                                 />,
                     k8sObj: x
                 }))}
+                classNameSelectedItemContainer={styles.selectedItemContainer}
                 classNameListContainer={styles.itemListContainer}
                 onRenderDetails={onRenderChangeDetails}
             >
             </ItemDetailsList>
-
-            {/* <ScrollbarComponent >
-
-                <div className={styles.innerContainer}>
-
-                    {details.changes.map((x, index) => 
-
-                        <K8sConfig key={index} config={x} />
-
-                    )}
-
-                </div>
-
-            </ScrollbarComponent> */}
         </div>
                
     </Block>;

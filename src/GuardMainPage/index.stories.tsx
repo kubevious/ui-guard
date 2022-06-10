@@ -13,7 +13,7 @@ export default {
 export const Default: Story = () => {
 
     app.registerService({ kind: 'guard' }, () => {
-        return new GuardService();
+        return new GuardService(false, 10);
     });
     
     return (
@@ -25,3 +25,33 @@ export const Default: Story = () => {
     );
 };
 
+export const MultiPage: Story = () => {
+
+    app.registerService({ kind: 'guard' }, () => {
+        return new GuardService(false, 2);
+    });
+    
+    return (
+        <div style={{ minHeight: '100vh', maxWidth: '100vw', width: '100vw', height: '100vh' }}>
+            <div style={{ background: '#2f3036', height: '100%', width: '100%', position: 'relative' }}>
+                <GuardMainPage />
+            </div>
+        </div>
+    );
+};
+
+
+export const Empty: Story = () => {
+
+    app.registerService({ kind: 'guard' }, () => {
+        return new GuardService(true, 5);
+    });
+    
+    return (
+        <div style={{ minHeight: '100vh', maxWidth: '100vw', width: '100vw', height: '100vh' }}>
+            <div style={{ background: '#2f3036', height: '100%', width: '100%', position: 'relative' }}>
+                <GuardMainPage />
+            </div>
+        </div>
+    );
+};

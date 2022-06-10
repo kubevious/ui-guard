@@ -13,7 +13,7 @@ export default {
 export const Default: Story = () => {
 
     app.registerService({ kind: 'guard' }, () => {
-        return new GuardService();
+        return new GuardService(false, 10);
     });
     
     return (

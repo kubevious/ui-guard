@@ -20,14 +20,16 @@ export const K8sObjectInfo : FC<K8sObjectInfoProps> = ({
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.kindLine}>
                 {apiVersion} :: {kind} 
             </div>
             <div>
                 {namespace && <>
-                    {namespace} :: 
+                    {namespace} :: {name}
                 </>} 
-                {name}
+                {!namespace && <>
+                    {name}
+                </>} 
             </div>
         </div>
     );

@@ -11,3 +11,8 @@
 .itemListContainer {
     width: 450px !important;
 }
+
+.selectedItemContainer {
+    background: #4ecd77 !important;
+    color: #ffffff !important;
+}
