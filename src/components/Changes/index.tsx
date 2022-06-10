@@ -2,7 +2,7 @@ import _ from 'the-lodash';
 import React, { FC } from 'react';
 import { ChangePackageItemDetails } from '@kubevious/ui-middleware/dist/services/guard';
 import { Block } from '../Block';
-import { ScrollbarComponent, ItemDetailsList, ListItem } from '@kubevious/ui-components';
+import { ItemDetailsList, ListItem } from '@kubevious/ui-components';
 import { K8sConfig } from '../K8sConfig';
 import { K8sObjectInfo } from '../K8sObjectInfo';
 
