@@ -2,7 +2,7 @@ import _ from 'the-lodash';
 import React, { FC } from 'react';
 import { ChangePackageItemDetails } from '@kubevious/ui-middleware/dist/services/guard';
 import { Block } from '../Block';
-import { getK8sConfigTitle } from '../stringifier';
+import { K8sObjectInfo } from '../K8sObjectInfo';
 
 import styles from './styles.module.css';
 
@@ -23,14 +23,13 @@ export const DeletedChanges : FC<DeletedChangesProps> = ({ details }) => {
 
             {details.deletions.map((x, index) => 
 
-                <li key={index}>{getK8sConfigTitle({
-                    apiVersion: x.apiVersion,
-                    kind: x.kind,
-                    metadata: {
-                        namespace: x.namespace,
-                        name: x.name,
-                    }
-                })}</li>
+                <li key={index}>
+                    <K8sObjectInfo apiVersion={x.apiVersion}
+                                   kind={x.kind}
+                                   namespace={x.namespace}
+                                   name={x.name}
+                                   />
+                </li>
 
             )}
 

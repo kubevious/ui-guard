@@ -7,3 +7,7 @@
     flex-direction: column;
     gap: 15px;
 }
+
+.itemListContainer {
+    width: 450px !important;
+}

@@ -24,7 +24,7 @@
     "dependencies": {
         "@kubevious/entity-meta": "^1.0.69",
         "@kubevious/ui-alerts": "^1.0.49",
-        "@kubevious/ui-components": "^1.0.243",
+        "@kubevious/ui-components": "^1.0.244",
         "@kubevious/ui-framework": "^1.0.59",
         "@kubevious/ui-middleware": "^1.0.72",
         "@kubevious/ui-properties": "^1.0.75",
