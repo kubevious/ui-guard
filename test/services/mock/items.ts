@@ -1,3 +1,4 @@
+import _ from 'the-lodash';
 import { KubernetesObject } from '@kubevious/ui-middleware/dist';
 import { AlertSourceKind } from '@kubevious/ui-middleware/dist/entities/alert';
 import { ChangePackageDeletion, ValidationIssues, ValidationState } from '@kubevious/ui-middleware/dist/entities/guard';
@@ -53,6 +54,10 @@ export const ITEMS: any[] = [
         success: false,
     },
 ];
+const orderedItems = _.orderBy(ITEMS, x => x.date, ['asc']);
+for(let i = 0; i < orderedItems.length; i++) {
+    orderedItems[i].index = i;
+}
 
 export const MOCK_CHARTS_DATA = [
 

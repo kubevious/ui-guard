@@ -25,34 +25,36 @@ export class GuardService implements IGuardService {
       }
     }
 
-    getItems(lastId?: string): Promise<ChangePackageListResult>
+    getItems(nextToken?: number): Promise<ChangePackageListResult>
     {
-      console.log("[LastId] ", lastId);
-      let matchingItems : any[] = this._itemData;
-      if (lastId) {
-        const index = _.findIndex(matchingItems, x => x.change_id === lastId);
-        if (index !== -1) {
-          matchingItems = _.drop(matchingItems, index + 1);
-        }
+      console.log("[getItems] nextToken: ", nextToken);
+      // console.log("[getItems] this._itemData: ", this._itemData);
+
+      let matchingItems : any[] = _.orderBy(this._itemData, x => x.index, ['desc']);
+      if (nextToken) {
+        matchingItems = _.filter(matchingItems, x => x.index < nextToken);
       }
+      // console.log("[getItems] matchingItems:", matchingItems);
 
       const selectedItems = _.take(matchingItems, this._resultCount);
+      console.log("[getItems] selectedItems:", selectedItems);
 
-      let nextId : string | undefined;
+      let newNextToken : number | undefined;
       if (selectedItems.length < matchingItems.length) {
-        nextId = _.last(selectedItems).change_id;
+        newNextToken = _.last(selectedItems).index;
       }
+      // console.log("[getItems] newNextToken:", newNextToken);
 
       return Promise.resolve({
         totalCount: this._itemData.length,
-        nextId: nextId,
+        nextToken: newNextToken,
         items: selectedItems.map(x => makeListItem(x))
       });
     }
 
-    getDetails(id: string): Promise<ChangePackageItemDetails | null>
+    getDetails(changeId: string): Promise<ChangePackageItemDetails | null>
     {
-        const x = _.find(this._itemData, x => x.change_id === id);
+        const x = _.find(this._itemData, x => x.change_id === changeId);
         if (!x) {
           return Promise.resolve(null);
         }

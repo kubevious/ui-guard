@@ -17,7 +17,7 @@ import styles from './styles.module.css';
 export const GuardMainPage = () => {
     const [items, setItems] = useState<ChangePackageListItem[] | null>(null);
     const [totalCount, setTotalCount] = useState<number>(0);
-    const [nextItemId, setNextItemId] = useState<string | null>(null);
+    const [nextToken, setNextToken] = useState<number | null>(null);
 
     const service = useService<IGuardService>({ kind: 'guard' }, 
         (svc) => {
@@ -25,21 +25,21 @@ export const GuardMainPage = () => {
             svc.getItems()
                 .then(result => {
                     setTotalCount(result.totalCount ?? 0);
-                    setNextItemId(result.nextId ?? null);
+                    setNextToken(result.nextToken ?? null);
                     setItems(result.items);
                 });
 
         });
 
     const loadMore = () => {
-        if (!nextItemId) {
+        if (!nextToken) {
             return;
         }
 
-        service!.getItems(nextItemId)
+        service!.getItems(nextToken)
             .then(result => {
                 setTotalCount(result.totalCount ?? 0);
-                setNextItemId(result.nextId ?? null);
+                setNextToken(result.nextToken ?? null);
                 setItems(_.concat(items ?? [], result.items));
             });
     }
@@ -82,7 +82,7 @@ export const GuardMainPage = () => {
                 </>}
             </>}
 
-            {nextItemId && 
+            {nextToken && 
                 <Button type='ghost' onClick={loadMore}>Load More</Button>
                 }
 
