@@ -27,7 +27,7 @@ const renderComponent = () => render(<MemoryRouter initialEntries={['/']}><Guard
 describe('GuardMainPage', () => {
     beforeAll(() => {
         app.registerService({ kind: 'guard' }, () => {
-            return new GuardService();
+            return new GuardService(false, 10);
         });
     });
 
