@@ -1,7 +1,7 @@
 import _ from 'the-lodash';
 import React, { FC, useState } from 'react';
 import { InnerPage, PageHeader } from '@kubevious/ui-components';
-// import { PageLink } from '@kubevious/ui-components';
+import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageItemDetails, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
 import { useService } from '@kubevious/ui-framework';
 
@@ -12,7 +12,7 @@ import { Changes } from '../Changes';
 import { DeletedChanges } from '../DeletedChanges';
 
 import styles from './styles.module.css';
-// import { GUARD_MAIN_PAGE } from '../..';
+import { GUARD_MAIN_PAGE } from '../..';
 
 export interface ValidationChangeDetailsProps {
     changeId: string;
@@ -40,10 +40,10 @@ export const ValidationChangeDetails : FC<ValidationChangeDetailsProps> = ({ cha
         >
             <div className={styles.container}>
 
-                {/* <PageLink name="Back"
+                <PageLink name="Back"
                           path={GUARD_MAIN_PAGE} >
                 </PageLink>
-                 */}
+                
             {changeDetails && <>
 
                 <Summary details={changeDetails} />
