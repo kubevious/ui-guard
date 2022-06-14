@@ -1,5 +1,5 @@
 import _ from 'the-lodash';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { InnerPage, Label, PageHeader } from '@kubevious/ui-components';
 import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageListItem, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
@@ -13,8 +13,11 @@ import { GUARD_CHANGE_DETAILS_PAGE } from '../metadata/page';
 
 import styles from './styles.module.css';
 
+export interface GuardMainPageProps {
+    header?: ReactNode;
+}
 
-export const GuardMainPage = () => {
+export const GuardMainPage : FC<GuardMainPageProps> = ({ header }) => {
     const [items, setItems] = useState<ChangePackageListItem[] | null>(null);
     const [totalCount, setTotalCount] = useState<number>(0);
     const [nextToken, setNextToken] = useState<number | null>(null);
@@ -53,6 +56,8 @@ export const GuardMainPage = () => {
             }
         >
             <div className={styles.contents}>
+
+            {header}
 
             <Table columns={['Date', 'Status', 'Changes']}
                 data={(items ?? []).map(x => {
