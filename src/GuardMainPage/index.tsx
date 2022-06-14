@@ -1,5 +1,5 @@
 import _ from 'the-lodash';
-import React, { ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { InnerPage, Label, PageHeader } from '@kubevious/ui-components';
 import { PageLink } from '@kubevious/ui-components';
 import { ChangePackageListItem, IGuardService } from '@kubevious/ui-middleware/dist/services/guard';
